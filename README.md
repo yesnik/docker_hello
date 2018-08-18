@@ -2,6 +2,10 @@
 
 This is a simple example of using docker.
 
+## Requirements
+
+In your system [Docker](https://www.docker.com/) must be installed.
+
 ## Installation
 
 * Clone this repo
@@ -10,20 +14,20 @@ This is a simple example of using docker.
 git clone git@github.com:yesnik/docker_hello.git
 ```
 
-* Bulid image with tag 'docker_hello'
+* Bulid an image with the tag 'docker_hello'
 
 ```
 cd docker_hello
 docker build -t docker_hello .
 ```
 
-* Ensure that image was created:
+* Ensure that the image has been created:
 
 ```
 docker image ls
 ```
 
-In the output you must see repository `docker_hello`.
+In the output you must see the repository `docker_hello`.
 
 * Run our custom image
 
@@ -40,4 +44,8 @@ docker run --name docker_hello_container -d -p 8080:80 docker_hello
 
 * Open the page in a browser: http://127.0.0.1:8080/
 
-On this page you'll see message from `html/index.html` file.
+On this page you'll see the message from `html/index.html` file.
+
+## Conclusion
+
+In this repo we have created self-contained web server that could easily serve many web documents. We can deploy it on any platform that supports Docker.
