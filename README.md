@@ -46,10 +46,11 @@ docker run --name docker_hello_container -d -p 8080:80 docker_hello
 On this page you'll see the message from `html/index.html` file: http://127.0.0.1:8080/
 
 
-### Enter into container
+### Connect to container
 
 ```
-docker run -it docker_hello sh
+docker start docker_hello_container
+docker exec -it docker_hello_container sh
 ```
 
 Executing `run` command with the `-it` flags attaches us to an *interactive tty* in the container.
