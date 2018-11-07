@@ -46,6 +46,14 @@ docker run --name docker_hello_container -d -p 8080:80 docker_hello
 
 On this page you'll see the message from `html/index.html` file.
 
+* Enter into container
+
+```
+docker run -it docker_hello sh
+```
+
+Executing `run` command with the `-it` flags attaches us to an *interactive tty* in the container.
+
 ## Conclusion
 
 In this repo we have created self-contained web server that could easily serve many web documents. We can deploy it on any platform that supports Docker.
