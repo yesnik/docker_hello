@@ -1,60 +1,74 @@
 # Docker Hello
 
-This is a simple example of using docker.
+This is an example of using Docker. Look inside `Dockerfile`, it's based on the official [nginx](https://hub.docker.com/_/nginx) image.
 
-## Requirements
+Ensure that your PC have [Docker](https://www.docker.com/) installed.
 
-In your system [Docker](https://www.docker.com/) must be installed.
 
 ## Installation
 
-### Clone this repo
-
-```
+1. Clone this repo
+```bash
 git clone git@github.com:yesnik/docker_hello.git
 ```
 
-### Bulid an image with the tag 'docker_hello'
-
-```
+2. Bulid an image with the repo name `docker_hello` and tag `1.0`
+```bash
 cd docker_hello
-docker build -t docker_hello .
+docker build -t docker_hello:1.0 .
 ```
 
-### Ensure that the image has been created:
-
-```
-docker image ls
-```
-
-In the output you must see the repository `docker_hello`.
-
-### Run our custom image
-
-```
-docker run --name docker_hello_container -d -p 8080:80 docker_hello
+3. Ensure that the image has been created
+```bash
+docker images
 ```
 
-*Notes:*
-- `--name docker_hello_container` - here we give a name to the container
+4. Create container based on our image
+```bash
+docker run --name docker_hello_container -d -p 8080:80 docker_hello:1.0
+```
+
+*Params:*
+- `--name docker_hello_container` - name of the created container
 - `-d` - detaches from the container, running it in the background
-- `-p 8080:80` - maps network ports
-- `docker_hello` - name of the container we want to run
+- `-p 8080:80` - maps network ports. Your host's port 8080 will be mapped to container's 80 port
+- `docker_hello:1.0` - image's name
 
-### Open the page in a browser
+5. Visit page: http://127.0.0.1:8080/. You'll see the message from `index.html` file.
 
-On this page you'll see the message from `html/index.html` file: http://127.0.0.1:8080/
+### Play with the container
 
-
-### Connect to container
-
-```
-docker start docker_hello_container
-docker exec -it docker_hello_container sh
+1. Look at the running containers
+```bash
+docker ps
 ```
 
-Executing `run` command with the `-it` flags attaches us to an *interactive tty* in the container.
+2. Connect to the container and use bash
+```bash
+docker exec -it docker_hello_container bash
+```
+
+Flag `-it` attaches us to an *interactive tty* in the container.
+
+3. To exit container press `Ctrl + D`
+
+4. Stop the container
+```bash
+docker stop docker_hello_container
+```
+
+5. Remove the container
+```bash
+docker rm docker_hello_container
+```
+
+6. Ensure that the container has been deleted
+```bash
+docker ps -a
+```
+You won't see `docker_hello_container` in the list.
 
 ## Conclusion
 
-In this repo we have created self-contained web server that could easily serve many web documents. We can deploy it on any platform that supports Docker.
+In this repo we have created self-contained web server that could easily serve many web documents.
+We can deploy it on any server with Docker.
